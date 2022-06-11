@@ -10,7 +10,7 @@ const config = {
     tagline: 'mdpkm real',
     url: 'https://your-docusaurus-test-site.com',
     baseUrl: '/',
-    onBrokenLinks: 'throw',
+    onBrokenLinks: 'warn',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico',
 
