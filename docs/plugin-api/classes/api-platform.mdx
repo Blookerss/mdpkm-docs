@@ -1,0 +1,40 @@
+---
+sidebar_position: 1
+---
+import { PROMISE_LINK } from '/src/common/constants';
+
+# APIPlatform
+Base class for platforms.
+
+## Properties
+### id
+`static` **id**: `string`
+
+### icon
+`static` **icon**: `string`
+
+## Methods
+### search
+**search**(`query: string`, `options:` [PlatformSearchOptions](../interfaces/platform-search-options)): <a href={PROMISE_LINK}>Promise</a><[Project](project)[]>
+
+Searches the platform's projects with the given query.
+
+#### Examples
+```js title="Searching for projects on Modrinth"
+const data = await API.get('modrinth').search('', {
+    versions: ['1.19', '1.18.2'],
+    categories: ['cursed']
+});
+console.log(data);
+```
+
+### getProject
+**getProject**(`id: string`): <a href={PROMISE_LINK}>Promise</a><[Project](project)>
+
+Requests project info for the specified id.
+
+#### Examples
+```js title="Getting a project"
+const data = await API.get('modrinth').getProject('fabric-api');
+console.log(data);
+```

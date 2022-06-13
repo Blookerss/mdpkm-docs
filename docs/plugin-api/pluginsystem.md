@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 6
 ---
 
 # PluginSystem
@@ -7,7 +7,7 @@ The PluginSystem is a extendable class that integrates with mdpkm.
 
 ## Methods
 ### addLoader
-**addLoader**(`id: string`, `options:` [LoaderOptions](../interfaces/loaderoptions)): `string`
+**addLoader**(`id: string`, `options:` [LoaderOptions](interfaces/loaderoptions)): `string`
 
 Adds a custom loader to mdpkm, along with an entry on the loader list.
 

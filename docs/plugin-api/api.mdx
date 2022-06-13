@@ -1,6 +1,7 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
+import { PROMISE_LINK } from '/src/common/constants';
 
 # API
 Provides useful methods for mdpkm's functionality,
@@ -10,9 +11,11 @@ Accessible as a global variable in the plugin environment.
 
 ## Methods
 ### get
-**get**(`id: string`): Object
+**get**(`id: string`): [APIPlatform](classes/api-platform) | [Loader](classes/loader)
 
 Returns a registered API.
+
+If you're getting a loader use [getLoader](#getLoader) instead.
 
 #### Examples
 ```js title="Getting a project from Modrinth"
@@ -20,8 +23,20 @@ const data = await API.get('modrinth').getProject('fabric-api');
 console.log(data);
 ```
 
+### getLoader
+**getLoader**(`id: string`): [Loader](classes/loaderm)
+
+Returns a registered loader.
+
+#### Examples
+```js title="Getting a registered loader"
+// Logs Quilt's recommended mod to the console
+const quilt = await API.getLoader('quilt');
+console.log(quilt.recommendedMod);
+```
+
 ### makeRequest
-**makeRequest**(`url: string`, `options:` [RequestOptions](interfaces/requestoptions)): [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[WebResponse](interfaces/webresponse)>
+**makeRequest**(`url: string`, `options:` [RequestOptions](interfaces/request-options)?): <a href={PROMISE_LINK}>Promise</a><[WebResponse](interfaces/webresponse)>
 
 Makes a request to the specified URL with the provided options.
 

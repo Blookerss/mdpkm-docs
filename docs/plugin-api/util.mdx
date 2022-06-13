@@ -1,0 +1,98 @@
+---
+sidebar_position: 4
+---
+import { PROMISE_LINK } from '/src/common/constants';
+
+# Util
+Provides useful methods for mdpkm's functionality,
+most of this class will not be documented.
+
+Accessible as a global variable in the plugin environment.
+
+## Methods
+### downloadFile
+**downloadFile**(`url: string`, `directory: string`, `cache: boolean`, `fileName: string`): <a href={PROMISE_LINK}>Promise</a><string\>
+
+Downloads a file from the provided URL.
+
+#### Example
+```js title="Basic download example"
+// Gets the latest version of Fabric API for 1.18.2 from Modrinth
+const versions = await API.get('modrinth').getProjectVersions('fabric-api', {
+    loader: { game: '1.18.2' }
+});
+// Downloads said version to the user's downloads folder
+await Util.downloadFile(
+    // Make sure the URL is valid and encoded
+    versions[0].files.find(f => f.primary).url,
+    // Must be a directory that exists
+    'C:/Users/username/Downloads',
+    // Cancels the download if the file already exists (Optional)
+    true,
+    // Overrides the file name (Optional)
+    'fabric-api-for-teens.jar'
+);
+```
+
+### readTextFile
+**readTextFile**(`path: string`): <a href={PROMISE_LINK}>Promise</a><string\>
+
+Reads an existing file from the file system in plain text.
+
+#### Examples
+```js title="Reading a text file"
+const data = await Util.readTextFile('C:/Users/username/Documents/somefile.txt');
+console.log(data);
+```
+```js title="Reading a JSON file"
+const data = await Util.readTextFile('C:/Users/username/Documents/somefile.json').then(JSON.parse);
+console.log(data);
+```
+
+### readBinaryFile
+**readBinaryFile**(`path: string`): <a href={PROMISE_LINK}>Promise</a><int[]>
+
+Reads an existing file from the file system in plain text.
+
+#### Examples
+```js title="Reading a text file"
+const data = await Util.readTextFile('C:/Users/username/Documents/somefile.txt');
+console.log(data);
+```
+```js title="Reading a JSON file"
+const data = await Util.readTextFile('C:/Users/username/Documents/somefile.json').then(JSON.parse);
+console.log(data);
+```
+
+### readFileBase64
+**readFileBase64**(`path: string`): <a href={PROMISE_LINK}>Promise</a><string/>
+
+Reads an existing file from the file system in binary as a Base64 string.
+
+#### Examples
+```js title="Reading a image file"
+const data = await Util.readFileBase64('C:/Users/username/Pictures/catphoto1.png');
+console.log(data);
+```
+
+### writeFile
+**writeFile**(`path: string`, `contents: string`): <a href={PROMISE_LINK}>Promise</a><void\>
+
+Writes to the file system, overriding the file's contents if it exists.
+
+#### Examples
+```js title="Writing to the file system"
+const data = await Util.writeFile('C:/Users/username/Documents/catlist.txt');
+console.log(data);
+```
+
+### fileExists
+**fileExists**(`path: string`): <a href={PROMISE_LINK}>Promise</a><boolean\>
+
+Checks if a file exists in the file system, returns true or false.
+
+#### Examples
+```js title="Checking if a file exists"
+const exists = await Util.fileExists('C:/Users/username/Documents/catlist.txt');
+console.log(exists);
+```
